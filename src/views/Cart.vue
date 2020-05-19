@@ -222,6 +222,7 @@
 import navHeader from '../components/Header.vue'
 import navFooter from '../components/Footer.vue'
 import model from '../components/Model'
+import func from '../../vue-temp/vue-editor-bridge'
 export default {
   name: 'Cart',
   data () {
@@ -260,12 +261,12 @@ export default {
       return money;
     }
   },
-  // mounted () {
-  //   //初始化购物车列表
-  //   this.init();
-  // },
+  mounted () {
+    //初始化购物车列表
+    this.init();
+  },
   filters: {
-    currency (value) {
+    currency: function (value) {
       if (!value) {
         return 0.00
       }
@@ -274,14 +275,14 @@ export default {
   },
   methods: {
     // 初始化购物车列表数据
-    //   init () {
-    //     alert('kkk')
-    //     this.axios.get("/mock/cart.json").then((response) => {
-    //       console.log(response)
-    //       let res = response.data;
-    //       this.cartList = res.data;
-    //     })
-    //   }
+    init () {
+      alert('kkk')
+      this.axios.get("/mock/cart.json").then((response) => {
+        console.log(response)
+        let res = response.data;
+        this.cartList = res.data;
+      })
+    },
     // 修改购物车数量
     editCart (type, item) {
       if (type == 'add') {
